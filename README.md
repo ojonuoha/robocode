@@ -15,3 +15,10 @@
  * AlienComposition
  * TrackerBot
  * WallBot
+
+
+Functions:
+ * Firing rate function (distance to opponent)
+ 	* Returns float b/w 1-3 
+ * Predict where opponent is
+ * Movement function
