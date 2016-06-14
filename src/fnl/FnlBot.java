@@ -33,9 +33,9 @@ public class FnlBot extends AdvancedRobot {
 	 */
 	public void run() {
 		// Set colors
-		setBodyColor(Color.white);
-		setGunColor(Color.white);
-		setRadarColor(Color.white);
+		setBodyColor(new Color(0, 0, 0));
+		setGunColor(new Color(0, 0, 0));
+		setRadarColor(new Color(0, 0, 0));
 
 		// Initially, we'll move when life hits 80
 		trigger = 80;
