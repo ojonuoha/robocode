@@ -19,7 +19,7 @@ public class JoeBot extends AdvancedRobot {
     String trackName;
     boolean keepGoing = true;
     boolean leftRight = false;
-    double driveDist = 100;
+    double driveDist = 30;
     int BEARING_ADJUSTMENT = 45;
     int FIRE_DIST = 200;
     double FIREPOWER = 3;
@@ -109,7 +109,6 @@ public class JoeBot extends AdvancedRobot {
             out.println("Tracking " + trackName);
         }
 
-        // This is our target.  Reset count (see the run method)
         count = 0;
 
         // If our target is too far away, turn and move toward it.
@@ -133,8 +132,7 @@ public class JoeBot extends AdvancedRobot {
         	fire(FIREPOWER);
         }
 
-        // Our target is too close!  Back up.
-        if (e.getDistance() < 100) {
+        if (e.getDistance() < 200) {
             if (e.getBearing() > -90 && e.getBearing() <= 90) {
                 back(100);
             } else {
