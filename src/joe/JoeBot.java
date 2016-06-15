@@ -55,7 +55,6 @@ public class JoeBot extends AdvancedRobot {
 //	}
 
     public double getGunTurnAmt(ScannedRobotEvent e) {
-<<<<<<< HEAD
     	double myX = getX();
         double myY = getY();
         
