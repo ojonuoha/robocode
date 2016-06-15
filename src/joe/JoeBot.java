@@ -23,6 +23,23 @@ public class JoeBot extends AdvancedRobot {
         long time = (long)(enemyDistance / bulletSpeed);
         return time;
     }
+    
+	public double aim(double enemyX, double enemyY, double enemyBearing, double enemySpeed, double time){
+		double angle = 0;
+		double myX = getX();
+		double myY = getY();
+		double dist = time * enemySpeed;
+		
+		double newEnemyY = enemyY + dist * Math.sin(enemyBearing);
+		double newEnemyX = enemyX + dist * Math.cos(enemyBearing);
+		
+		double newAimY = newEnemyY - myY;
+		double newAimX = newEnemyX - myX;
+		
+		angle = 90 - Math.atan(newAimX/newAimY);
+		
+		return angle;
+	}
 
     public void run() {
 
