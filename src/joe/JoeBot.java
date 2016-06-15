@@ -18,6 +18,7 @@ public class JoeBot extends AdvancedRobot {
     String trackName;
     boolean keepGoing = true;
     boolean leftRight = false;
+    double driveDist = 100;
 
     public float timeToFly(double firePower, double enemyDistance) {
 
@@ -102,7 +103,7 @@ public class JoeBot extends AdvancedRobot {
             }
             leftRight = !leftRight;
             turnRight(e.getBearing() + bearingAdjustment);
-            ahead(100);
+            ahead(driveDist);
             return;
         }
 
