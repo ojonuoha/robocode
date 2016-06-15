@@ -19,8 +19,8 @@ public class JoeBot extends AdvancedRobot {
     String trackName;
     boolean keepGoing = true;
     boolean leftRight = false;
-    double driveDist = 30;
-    int BEARING_ADJUSTMENT = 45;
+    double driveDist = 200;
+    int BEARING_ADJUSTMENT = 70;
     int FIRE_DIST = 200;
 
     public double getFirePower(ScannedRobotEvent enemy) {
@@ -130,7 +130,7 @@ public class JoeBot extends AdvancedRobot {
         	fire(3);
         }
 
-        if (e.getDistance() < 200) {
+        if (e.getDistance() < 300) {
             if (e.getBearing() > -90 && e.getBearing() <= 90) {
                 back(100);
             } else {
