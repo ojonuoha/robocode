@@ -20,6 +20,8 @@ public class JoeBot extends AdvancedRobot {
     boolean keepGoing = true;
     boolean leftRight = false;
     double driveDist = 100;
+    int BEARING_ADJUSTMENT = 45;
+    int FIRE_DIST = 200;
 
     public double getFirePower(ScannedRobotEvent enemy) {
         double firePower = Math.max((1 - (enemy.getDistance() / MAX_DISTANCE)) * 3, .1);
@@ -108,20 +110,19 @@ public class JoeBot extends AdvancedRobot {
             gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
 
             setTurnGunRight(gunTurnAmt);
-            int bearingAdjustment = 45;
             if (leftRight){
-                bearingAdjustment = -bearingAdjustment;
+                BEARING_ADJUSTMENT = -BEARING_ADJUSTMENT;
             }
             leftRight = !leftRight;
-            turnRight(e.getBearing() + bearingAdjustment);
+            turnRight(e.getBearing() + BEARING_ADJUSTMENT);
             ahead(driveDist);
-            return;
         }
 
-        // Our target is close.
-        gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
-        setTurnGunRight(gunTurnAmt);
-        fire(3);
+        if (e.getDistance() < FIRE_DIST){
+        	gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
+        	setTurnGunRight(gunTurnAmt);
+        	fire(3);
+        }
 
         // Our target is too close!  Back up.
         if (e.getDistance() < 100) {
