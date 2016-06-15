@@ -12,7 +12,6 @@
 
 * Good bot strategies from samples bots
  * SpinBot
- * AlienComposition
  * TrackerBot
  * WallBot
 
