@@ -76,9 +76,8 @@ public class JoeBot extends AdvancedRobot {
         if (e.getDistance() > 150) {
             gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
 
-            turnGunRight(gunTurnAmt); // Try changing these to setTurnGunRight,
-            turnRight(e.getBearing()); // and see how much Tracker improves...
-            // (you'll have to make Tracker an AdvancedRobot)
+            setTurnGunRight(gunTurnAmt);
+            turnRight(e.getBearing());
             ahead(e.getDistance() - 140);
             return;
         }
