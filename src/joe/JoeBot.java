@@ -19,10 +19,10 @@ public class JoeBot extends AdvancedRobot {
     String trackName;
     boolean keepGoing = true;
     boolean leftRight = false;
-    double driveDist = 200;
-    int BEARING_ADJUSTMENT = 70;
-    int FIRE_DIST = 200;
-    double FIREPOWER = 3;
+    double driveDist = 10;
+    int BEARING_ADJUSTMENT = 20;
+    int FIRE_DIST = 150;
+    double FIREPOWER = 2.5;
 
     public double getFirePower(ScannedRobotEvent enemy) {
         double firePower = Math.max((1 - (enemy.getDistance() / MAX_DISTANCE)) * 3, .1);
