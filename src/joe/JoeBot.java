@@ -17,10 +17,10 @@ public class JoeBot extends AdvancedRobot {
     double gunTurnAmt; // How much to turn our gun when searching
     String trackName; // Name of the robot we're currently tracking
 
-    public float time_to_fly(double firepower) {
+    public float timeToFly(double firePower, double enemyDistance) {
 
         double bulletSpeed = 20 - firePower * 3; // calculate speed of bullet
-        long time = (long)(enemy.getDistance() / bulletSpeed);
+        long time = (long)(enemyDistance / bulletSpeed);
         return time;
     }
 
