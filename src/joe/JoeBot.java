@@ -22,6 +22,7 @@ public class JoeBot extends AdvancedRobot {
     double driveDist = 100;
     int BEARING_ADJUSTMENT = 45;
     int FIRE_DIST = 200;
+    double FIREPOWER = 3;
 
     public double getFirePower(ScannedRobotEvent enemy) {
         double firePower = Math.max((1 - (enemy.getDistance() / MAX_DISTANCE)) * 3, .1);
@@ -54,15 +55,13 @@ public class JoeBot extends AdvancedRobot {
 	}
 
     public double getGunTurnAmt(ScannedRobotEvent e) {
-
-        //  return normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
-
-        double angle = Math.toRadians(getHeadingRadians() + e.getBearingRadians() % 360);
-
-        // Calculate the coordinates of the robot
-        double enemyX = (getX() + Math.sin(angle) * e.getDistance());
-        double enemyY = (getY() + Math.cos(angle) * e.getDistance());
-
+    	double myX = getX();
+        double myY = getY();
+        
+        double enemyDistance = e.getDistance();
+        double enemyTravelDist = e.getVelocity() * time(FIREPOWER, enemyDistance);
+        
+        
 
     }
 
@@ -134,7 +133,7 @@ public class JoeBot extends AdvancedRobot {
         if (e.getDistance() < FIRE_DIST){
         	gunTurnAmt = getGunTurnAmt(e);
         	setTurnGunRight(gunTurnAmt);
-        	fire(3);
+        	fire(FIREPOWER);
         }
 
         // Our target is too close!  Back up.
