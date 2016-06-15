@@ -15,10 +15,17 @@ public class JoeBot extends AdvancedRobot {
 
     int count = 0;
     double gunTurnAmt;
+    double WIDTH, HEIGHT, MAX_DISTANCE;
     String trackName;
     boolean keepGoing = true;
     boolean leftRight = false;
     double driveDist = 100;
+
+    public double getFirePower(ScannedRobotEvent enemy) {
+        double firePower = Math.max((1 - (enemy.getDistance() / MAX_DISTANCE)) * 3, .1);
+        System.out.println(firePower);
+        return firePower;
+    }
 
     public float timeToFly(double firePower, double enemyDistance) {
 
@@ -45,6 +52,10 @@ public class JoeBot extends AdvancedRobot {
 	}
 
     public void run() {
+
+        WIDTH = getBattleFieldWidth();
+        HEIGHT = getBattleFieldHeight();
+        MAX_DISTANCE = Math.sqrt(Math.pow(WIDTH, 2) + Math.pow(HEIGHT, 2));
 
         setBodyColor(new Color(0, 0, 0));
         setGunColor(new Color(0, 0, 0));
@@ -109,7 +120,7 @@ public class JoeBot extends AdvancedRobot {
 
         // Our target is close.
         gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
-        turnGunRight(gunTurnAmt);
+        setTurnGunRight(gunTurnAmt);
         fire(3);
 
         // Our target is too close!  Back up.
