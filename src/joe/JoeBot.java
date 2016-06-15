@@ -13,9 +13,11 @@ import java.awt.*;
 
 public class JoeBot extends AdvancedRobot {
 
-    int count = 0; // Keeps track of how long we've been searching for our target
-    double gunTurnAmt; // How much to turn our gun when searching
-    String trackName; // Name of the robot we're currently tracking
+    int count = 0;
+    double gunTurnAmt;
+    String trackName;
+    boolean keepGoing = true;
+    boolean leftRight = false; // keeps track of which direction we are zagging
 
     public float timeToFly(double firePower, double enemyDistance) {
 
@@ -54,7 +56,7 @@ public class JoeBot extends AdvancedRobot {
         gunTurnAmt = 10; // Initialize gunTurn to 10
 
         // Loop forever
-        while (true) {
+        while (keepGoing) {
 
             // turn the Gun (looks for enemy)
             turnGunRight(gunTurnAmt);
@@ -94,8 +96,16 @@ public class JoeBot extends AdvancedRobot {
             gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
 
             setTurnGunRight(gunTurnAmt);
-            turnRight(e.getBearing());
-            ahead(e.getDistance() - 140);
+//            turnRight(e.getBearing());
+//            ahead(e.getDistance() - 140);
+
+            int bearingAdjustment = 45;
+            if (leftRight){
+                bearingAdjustment = -bearingAdjustment;
+            }
+            leftRight = !leftRight;
+            turnRight(e.getBearing() + bearingAdjustment);
+            ahead(1000);
             return;
         }
 
