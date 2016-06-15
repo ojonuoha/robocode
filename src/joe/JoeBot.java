@@ -82,22 +82,17 @@ public class JoeBot extends AdvancedRobot {
         setAdjustGunForRobotTurn(true); // Keep the gun still when we turn
         gunTurnAmt = 10; // Initialize gunTurn to 10
 
-        // Loop forever
+        // Scanning from Sample.Target
         while (keepGoing) {
 
-            // turn the Gun (looks for enemy)
             turnGunRight(gunTurnAmt);
-            // Keep track of how long we've been looking
             count++;
-            // If we've haven't seen our target for 2 turns, look left
             if (count > 2) {
                 gunTurnAmt = -10;
             }
-            // If we still haven't seen our target for 5 turns, look right
             if (count > 5) {
                 gunTurnAmt = 10;
             }
-            // If we *still* haven't seen our target after 10 turns, find another target
             if (count > 11) {
                 trackName = null;
             }
