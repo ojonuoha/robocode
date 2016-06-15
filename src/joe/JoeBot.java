@@ -17,7 +17,7 @@ public class JoeBot extends AdvancedRobot {
     double gunTurnAmt;
     String trackName;
     boolean keepGoing = true;
-    boolean leftRight = false; // keeps track of which direction we are zagging
+    boolean leftRight = false;
 
     public float timeToFly(double firePower, double enemyDistance) {
 
@@ -96,16 +96,13 @@ public class JoeBot extends AdvancedRobot {
             gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
 
             setTurnGunRight(gunTurnAmt);
-//            turnRight(e.getBearing());
-//            ahead(e.getDistance() - 140);
-
             int bearingAdjustment = 45;
             if (leftRight){
                 bearingAdjustment = -bearingAdjustment;
             }
             leftRight = !leftRight;
             turnRight(e.getBearing() + bearingAdjustment);
-            ahead(1000);
+            ahead(100);
             return;
         }
 
